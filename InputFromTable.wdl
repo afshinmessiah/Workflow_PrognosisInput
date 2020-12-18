@@ -31,6 +31,9 @@ task QueryInputs
     command
     <<<
     python3 <<CODE
+from google.cloud import bigquery
+import os
+import json    
 def query_and_write(json_file_name: str,
                     input_var_name: str,
                     ct_uid: list,
