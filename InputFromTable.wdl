@@ -3,10 +3,10 @@ version 1.0
 workflow GetInputList
 {
     input{
-        String Patient_id
-        String CTSeriesInstanceUID
-        String RTSeriesInstanceUID
-        String SGSeriesInstanceUID
+        Array[String] Patient_id
+        Array[String] CTSeriesInstanceUID
+        Array[String] RTSeriesInstanceUID
+        Array[String] SGSeriesInstanceUID
     }
     call QueryInputs{
         input: Patient_id=Patient_id,
@@ -20,17 +20,17 @@ task QueryInputs
 {
     input
     {
-        String Patient_id
-        String CTSeriesInstanceUID
-        String RTSeriesInstanceUID
-        String SGSeriesInstanceUID
+        Array[String] Patient_id
+        Array[String] CTSeriesInstanceUID
+        Array[String] RTSeriesInstanceUID
+        Array[String] SGSeriesInstanceUID
     }
     command
     <<<
-    echo "~{Patient_id}"
-    echo "~{CTSeriesInstanceUID}"
-    echo "~{RTSeriesInstanceUID}"
-    echo "~{SGSeriesInstanceUID}"
+    echo "~{sep='||' Patient_id}"
+    echo "~{sep='||' CTSeriesInstanceUID}"
+    echo "~{sep='||'RTSeriesInstanceUID}"
+    echo "~{sep='||'SGSeriesInstanceUID}"
     >>>
     meta
     {
