@@ -30,9 +30,8 @@ task QueryInputs
     }
     command
     <<<
-    python3 <<
-    CODE
-    def query_and_write(json_file_name: str,
+    python3 <<CODE
+def query_and_write(json_file_name: str,
                     input_var_name: str,
                     ct_uid: list,
                     rt_uid: list,
@@ -49,7 +48,7 @@ task QueryInputs
                 SERIESINSTANCEUID AS CTSERIESINSTANCEUID,
                 ARRAY_AGG(FORMAT('%s', LEFT(GCS_URL, INSTR(GCS_URL, '#', -1, 1) - 1))) AS INPUT_CT,
             FROM
-                `{0}`
+                \`{0}\`
             {1}
             GROUP BY PATIENTID, SERIESINSTANCEUID
         ),
@@ -60,7 +59,7 @@ task QueryInputs
                 SERIESINSTANCEUID AS RTSTRUCTSERIESINSTANCEUID,
                 ARRAY_AGG(FORMAT('%s', LEFT(GCS_URL, INSTR(GCS_URL, '#', -1, 1) - 1))) AS INPUT_RT,
             FROM
-                `{0}`
+                \`{0}\`
             {2}
             GROUP BY PATIENTID, SERIESINSTANCEUID
         ),
@@ -71,7 +70,7 @@ task QueryInputs
                 SERIESINSTANCEUID AS SEGSERIESINSTANCEUID,
                 ARRAY_AGG(FORMAT('%s', LEFT(GCS_URL, INSTR(GCS_URL, '#', -1, 1) - 1))) AS INPUT_SG,
             FROM
-                `{0}`
+                \`{0}\`
             {3}
             GROUP BY PATIENTID, SERIESINSTANCEUID
         )
@@ -141,14 +140,14 @@ task QueryInputs
             json.dump(
                 {input_var_name: vec_data}, fp, indent=4)
 
-    j_file_name = '~{json_file}'
-    p_id = ['~{sep="\', \'"  patient_id}']
-    ct_uid = ['~{sep="\', \'"  ct_seriesinstanceuid}']
-    rt_uid = ['~{sep="\', \'" rt_seriesinstanceuid}']
-    sg_uid = ['~{sep="\', \'" sg_seriesinstanceuid}']
-    var_name = 'data'
-    query_and_write(j_file_name, var_name, ct_uid, rt_uid, sg_uid)
-    CODE
+j_file_name = '~{json_file}'
+p_id = ['~{sep="\', \'"  patient_id}']
+ct_uid = ['~{sep="\', \'"  ct_seriesinstanceuid}']
+rt_uid = ['~{sep="\', \'" rt_seriesinstanceuid}']
+sg_uid = ['~{sep="\', \'" sg_seriesinstanceuid}']
+var_name = 'data'
+query_and_write(j_file_name, var_name, ct_uid, rt_uid, sg_uid)
+CODE
     >>>
     runtime
     {
