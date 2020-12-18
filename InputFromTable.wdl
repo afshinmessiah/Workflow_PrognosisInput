@@ -34,9 +34,9 @@ task QueryInputs
     >>>
     meta
     {
-        author: 'Afshin'
-        email: 'akbarzadehm@gmail.com'
-        description:'This workflow reads CT series instance uids and queries the data from dataset'
+        author: "Afshin"
+        email: "akbarzadehm@gmail.com"
+        description: "This workflow reads CT series instance uids and queries the data from dataset"
     }
 
 }
