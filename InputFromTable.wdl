@@ -12,7 +12,7 @@ workflow GetInputList
         input: Patient_id=Patient_id,
         CTSeriesInstanceUID=CTSeriesInstanceUID,
         RTSeriesInstanceUID=RTSeriesInstanceUID,
-        SGSeriesInstanceUID=SGSeriesInstanceUID,
+        SGSeriesInstanceUID=SGSeriesInstanceUID
     }
 
 }
