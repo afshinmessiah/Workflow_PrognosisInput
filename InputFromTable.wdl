@@ -32,5 +32,11 @@ task QueryInputs
     echo "~{RTSeriesInstanceUID}"
     echo "~{SGSeriesInstanceUID}"
     >>>
+    meta
+    {
+        author: 'Afshin'
+        email: 'akbarzadehm@gmail.com'
+        description:'This workflow reads CT series instance uids and queries the data from dataset'
+    }
 
 }
