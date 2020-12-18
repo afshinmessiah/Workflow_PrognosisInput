@@ -14,7 +14,7 @@ workflow GetInputList
         ct_seriesinstanceuid=ct_seriesinstanceuid,
         rt_seriesinstanceuid=rt_seriesinstanceuid,
         sg_seriesinstanceuid=sg_seriesinstanceuid,
-        json_file
+        json_file=json_file
     }
 
 }
