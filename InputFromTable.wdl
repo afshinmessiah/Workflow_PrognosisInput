@@ -18,6 +18,8 @@ workflow GetInputList
     }
     output{
         Array[String] out = QueryInputs.out
+        Array[File] jsonfile = QueryInputs.json
+
     }
 
 }
@@ -172,6 +174,7 @@ CODE
     }
     output{
         Array[String] out = tmp
+        Array[File] json = glob(json_file + '*.json')
     }
     
 
