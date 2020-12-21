@@ -16,6 +16,9 @@ workflow GetInputList
         sg_seriesinstanceuid=sg_seriesinstanceuid,
         json_file=json_file
     }
+    output{
+        Array[String] out = QueryInputs.out
+    }
 
 }
 task QueryInputs
@@ -28,6 +31,7 @@ task QueryInputs
         Array[String] sg_seriesinstanceuid
         String json_file
     }
+    Array[String] tmp = prefix('output_', range(length(patient_id)))
     command
     <<<
     python3 <<CODE
@@ -149,6 +153,7 @@ ct_uid = ['~{sep="\', \'"  ct_seriesinstanceuid}']
 rt_uid = ['~{sep="\', \'" rt_seriesinstanceuid}']
 sg_uid = ['~{sep="\', \'" sg_seriesinstanceuid}']
 var_name = 'data'
+
 query_and_write(j_file_name, var_name, ct_uid, rt_uid, sg_uid)
 CODE
     >>>
@@ -165,5 +170,9 @@ CODE
         email: "akbarzadehm@gmail.com"
         description: "This workflow reads CT series instance uids and queries the data from dataset"
     }
+    output{
+        Array[String] out = tmp
+    }
+    
 
 }
