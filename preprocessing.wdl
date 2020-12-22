@@ -1,10 +1,10 @@
 version 1.0
+
 ## Some description
 import "./Tasks/InputFromTable.wdl" as outsource
-workflow preprocessing_workflow
-{
-    input
-    {
+
+workflow preprocessing_workflow {
+    input {
         Array[String] patient_id
         Array[String] ct_seriesinstanceuid
         Array[String] rt_seriesinstanceuid
@@ -46,8 +46,7 @@ workflow preprocessing_workflow
 
     }
    
-    output
-    {
+    output {
         Array[String] dest = preprocessing_task.destination
         # Array[File] w_output1 = flatten(preprocessing_task.files_1)
         # Array[File] w_output2 = flatten(preprocessing_task.files_2)
@@ -57,8 +56,7 @@ workflow preprocessing_workflow
 }
 task preprocessing_task
 {
-    input 
-    { 
+    input { 
         Array[File] dicom_ct_list
         Array[File] dicom_rt_list
         String output_dir
@@ -230,15 +228,13 @@ task preprocessing_task
         CODE
         gsutil cp -r '~{output_dir}' '~{destinationBucket}'
     >>>
-    runtime
-    {
+    runtime {
         # docker: "biocontainers/plastimatch:v1.7.4dfsg.1-2-deb_cv1"
         docker: "afshinmha/plastimatch_terra_00:terra_run00"
         memory: "4GB"
 
     }
-    output 
-    {
+    output {
         String destination = output_dir + "/" + output_dir
         # Object outtt = read_json('outputfiles.json')
         # Array[File] outputfiles = outtt.data
