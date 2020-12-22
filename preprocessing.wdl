@@ -53,6 +53,9 @@ workflow preprocessing_workflow {
         # File jj = jjjjsss
         # File inn = innnppp
     }
+    meta {
+    allowNestedInputs: true
+    }
 }
 task preprocessing_task
 {
@@ -247,9 +250,7 @@ task preprocessing_task
     #     email: "akbarzadehm@gmail.com"
     #     description: "This is a test on terra"
     # }
-    meta {
-    allowNestedInputs: true
-    }
+    
 
 
 }
