@@ -11,7 +11,7 @@ workflow preprocessing_workflow
         Array[String] sg_seriesinstanceuid
         String json_file
     }
-    call outsource.QueryInputs{
+    call outsource{
         input: patient_id=patient_id,
         ct_seriesinstanceuid=ct_seriesinstanceuid,
         rt_seriesinstanceuid=rt_seriesinstanceuid,
@@ -25,9 +25,9 @@ workflow preprocessing_workflow
     # }
 
 
-    scatter(j in range(length(outsource.QueryInputs.jsonfiles)))
+    scatter(j in range(length(outsource.jsonfiles)))
     {
-        Object tmp = read_json(outsource.QueryInputs.jsonfiles[j])
+        Object tmp = read_json(outsource.jsonfiles[j])
         Array[Object] inputs = tmp.data
     }
     Array[Object] flattened_inputs = flatten(inputs)
