@@ -4,7 +4,8 @@ import "InputFromTable.wdl" as outsource
 
 workflow preprocessing_workflow
 {
-    input{
+    input
+    {
         Array[String] patient_id
         Array[String] ct_seriesinstanceuid
         Array[String] rt_seriesinstanceuid
@@ -45,11 +46,7 @@ workflow preprocessing_workflow
         }
 
     }
-    meta {
-        author: "Afshin"
-        email: "akbarzadehm@gmail.com"
-        description: "This is a test on terra"
-    }
+   
     output
     {
         Array[String] dest = preprocessing_task.destination
@@ -249,6 +246,11 @@ task preprocessing_task
         # Array[File] all_files = read_lines('outputfiles.txt')
         # Array[File] files_1 = glob(output_dir + "/*")
         # Array[File] files_2 = glob(output_dir + "/*/*")
+    }
+     meta {
+        author: "Afshin"
+        email: "akbarzadehm@gmail.com"
+        description: "This is a test on terra"
     }
 
 
