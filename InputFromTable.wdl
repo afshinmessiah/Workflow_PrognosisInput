@@ -1,28 +1,28 @@
 version 1.0
 
-workflow GetInputList
-{
-    input{
-        Array[String] patient_id
-        Array[String] ct_seriesinstanceuid
-        Array[String] rt_seriesinstanceuid
-        Array[String] sg_seriesinstanceuid
-        String json_file
-    }
-    call QueryInputs{
-        input: patient_id=patient_id,
-        ct_seriesinstanceuid=ct_seriesinstanceuid,
-        rt_seriesinstanceuid=rt_seriesinstanceuid,
-        sg_seriesinstanceuid=sg_seriesinstanceuid,
-        json_file=json_file
-    }
-    output{
-        Array[String] out = QueryInputs.out
-        Array[File] jsonfile = QueryInputs.json
+# workflow GetInputList
+# {
+#     input{
+#         Array[String] patient_id
+#         Array[String] ct_seriesinstanceuid
+#         Array[String] rt_seriesinstanceuid
+#         Array[String] sg_seriesinstanceuid
+#         String json_file
+#     }
+#     call QueryInputs{
+#         input: patient_id=patient_id,
+#         ct_seriesinstanceuid=ct_seriesinstanceuid,
+#         rt_seriesinstanceuid=rt_seriesinstanceuid,
+#         sg_seriesinstanceuid=sg_seriesinstanceuid,
+#         json_file=json_file
+#     }
+#     output{
+#         Array[String] out = QueryInputs.out
+#         Array[File] jsonfile = QueryInputs.json
 
-    }
+#     }
 
-}
+# }
 task QueryInputs
 {
     input
