@@ -1,5 +1,5 @@
 version 1.0
-import "InputFromTable.wdl" as outsource
+import "./Tasks/InputFromTable.wdl" as outsource
 workflow preprocessing_workflow
 {
     input
