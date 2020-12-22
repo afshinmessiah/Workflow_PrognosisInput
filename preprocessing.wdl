@@ -246,11 +246,11 @@ task preprocessing_task
         # Array[File] files_1 = glob(output_dir + "/*")
         # Array[File] files_2 = glob(output_dir + "/*/*")
     }
-     meta {
-        author: "Afshin"
-        email: "akbarzadehm@gmail.com"
-        description: "This is a test on terra"
-    }
+    #  meta {
+    #     author: "Afshin"
+    #     email: "akbarzadehm@gmail.com"
+    #     description: "This is a test on terra"
+    # }
 
 
 }
