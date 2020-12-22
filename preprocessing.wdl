@@ -247,6 +247,9 @@ task preprocessing_task
     #     email: "akbarzadehm@gmail.com"
     #     description: "This is a test on terra"
     # }
+    meta {
+    allowNestedInputs: true
+    }
 
 
 }
