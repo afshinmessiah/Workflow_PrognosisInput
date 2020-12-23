@@ -1,7 +1,7 @@
 version 1.0
 
 ## Some description
-import "./Tasks/InputFromTable.wdl" as outsource
+import "https://raw.githubusercontent.com/afshinmessiah/Workflow_PrognosisInput/master/Tasks/InputFromTable.wdl" as outsource
 
 workflow preprocessing_workflow {
     input {
