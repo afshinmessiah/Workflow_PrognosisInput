@@ -1,0 +1,22 @@
+
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "validate wdl",
+            "type": "shell",
+            "command": "java",
+             "args": ["-jar", "/app/womtool-54.jar", "validate", "${file}"],
+            "problemMatcher": []
+        },
+        {
+            "label": "run wdl",
+            "type": "shell",
+            "command": "java",
+            "args": ["-jar", "/app/cromwell-54.jar", "run", "${file}"],
+            "problemMatcher": []
+        }
+    ]
+}
