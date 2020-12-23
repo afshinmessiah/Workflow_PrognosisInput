@@ -8,7 +8,14 @@
             "label": "validate wdl",
             "type": "shell",
             "command": "java",
-             "args": ["-jar", "/app/womtool-54.jar", "validate", "${file}"],
+             "args": ["-jar", "/app/womtool.jar", "validate", "${file}"],
+            "problemMatcher": []
+        },
+        {
+            "label": "list depnd wdl",
+            "type": "shell",
+            "command": "java",
+             "args": ["-jar", "/app/womtool.jar", "validate", "-l","${file}"],
             "problemMatcher": []
         },
         {

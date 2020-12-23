@@ -1,8 +1,5 @@
 version 1.0
-
-## Some description
-import "./Tasks/InputFromTable.wdl" as outsource
-
+import "Tasks/InputFromTable.wdl" as sub_
 workflow preprocessing_workflow {
     input {
         Array[String] patient_id
@@ -11,7 +8,7 @@ workflow preprocessing_workflow {
         Array[String] sg_seriesinstanceuid
         String json_file
     }
-    call outsource.QueryInputs{
+    call sub_.QueryInputs as external_q_inputs{
         input: patient_id=patient_id,
         ct_seriesinstanceuid=ct_seriesinstanceuid,
         rt_seriesinstanceuid=rt_seriesinstanceuid,
@@ -25,9 +22,9 @@ workflow preprocessing_workflow {
     # }
 
 
-    scatter(j in range(length(outsource.QueryInputs.jsonfiles)))
+    scatter(j in range(length(external_q_inputs.json)))
     {
-        Object tmp = read_json(outsource.QueryInputs.jsonfiles[j])
+        Object tmp = read_json(external_q_inputs.json[j])
         Array[Object] inputs = tmp.data
     }
     Array[Object] flattened_inputs = flatten(inputs)
@@ -36,12 +33,13 @@ workflow preprocessing_workflow {
     # File innnppp = write_objects(inputs)
     scatter (i in range(length(flattened_inputs)))
     {
+        String pid = flattened_inputs[i].PATIENTID
         call preprocessing_task
         { 
             input: dicom_ct_list=flattened_inputs[i].INPUT_CT,
             dicom_rt_list=flattened_inputs[i].INPUT_RT,
-            output_dir='./Folder_' + flattened_inputs[i].PATIENTID,
-            pat_id=flattened_inputs[i].PATIENTID
+            output_dir='./Folder_' + pid,
+            pat_id=pid
         }
 
     }
