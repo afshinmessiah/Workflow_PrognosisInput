@@ -1,0 +1,7 @@
+{
+    "GetInputList.ct_seriesinstanceuid": ["CTSERIESINSTANCEUID"],
+    "GetInputList.json_file": "test.json",
+    "GetInputList.sg_seriesinstanceuid": ["SEGSERIESINSTANCEUID"],
+    "GetInputList.rt_seriesinstanceuid": ["RTSTRUCTSERIESINSTANCEUID"],
+    "GetInputList.patient_id": ["patient_id"]
+}
